@@ -13,8 +13,6 @@
     <!-- spring自动读取指定位置的配置为简到spring中 -->
     <context:property-placeholder location="classpath:/properties/jdbc.properties"/>
 
-    <!--<context:component-scan base-package="org.activiti.app.repository"/>-->
-
     <!-- c3p0数据源配置 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver}"/>
@@ -32,7 +30,7 @@
     </bean>
 
      <!--sessionFactory -->
-    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+   <!-- <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations">
@@ -40,21 +38,20 @@
                 <value>classpath:mappers/**/*.xml</value>
             </list>
         </property>
-    </bean>
+    </bean>-->
 
      <!--mapper扫描器 -->
-    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.dianer"/>
-        <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
-    </bean>
+    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+        <!--<property name="basePackage" value="com.dianer"/>-->
+        <!--<property name="sqlSessionFactoryBeanName" value="sessionFactory"/>-->
+    <!--</bean>-->
      <!--事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!-- 使用annotation定义事务 -->
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
-
+    <!--&lt;!&ndash; 使用annotation定义事务 &ndash;&gt;-->
+    <!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
 
 
     <!-- ========================================================================================== -->
@@ -88,8 +85,8 @@
     <bean id="formService" factory-bean="processEngine" factory-method="getFormService"/>
     <bean id="identityService" factory-bean="processEngine" factory-method="getIdentityService"/>
     <bean id="managementService" factory-bean="processEngine" factory-method="getManagementService"/>
-    <bean id="formEngineRepositoryService" factory-bean="processEngine" factory-method="getFormEngineRepositoryService"/>
-    <bean id="formEngineFormService" factory-bean="processEngine" factory-method="getFormEngineFormService"/>
+    <!--<bean id="formEngineRepositoryService" factory-bean="processEngine" factory-method="getFormEngineRepositoryService"/>-->
+    <!--<bean id="formEngineFormService" factory-bean="processEngine" factory-method="getFormEngineFormService"/>-->
 
     <bean id="clock" depends-on="processEngine" factory-bean="processEngineConfiguration" factory-method="getClock" />
     <!-- Activiti  End -->

@@ -5,9 +5,9 @@
          id="WebApp_ID" version="3.1">
 
     <display-name>activiti-core</display-name>
-    <welcome-file-list>
-        <welcome-file>/workflow/modeler.html</welcome-file>
-    </welcome-file-list>
+    <!--<welcome-file-list>-->
+        <!--<welcome-file>/wf/modeler.html</welcome-file>-->
+    <!--</welcome-file-list>-->
     
     <context-param>
         <param-name>contextConfigLocation</param-name>
