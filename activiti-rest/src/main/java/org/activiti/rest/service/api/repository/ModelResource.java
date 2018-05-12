@@ -1,9 +1,9 @@
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * 
+ *
  *      http://www.apache.org/licenses/LICENSE-2.0
- * 
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -29,49 +29,50 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Frederik Heremans
  */
 @RestController
+@RequestMapping(value = "/workflow/repository/models/{modelId}")
 public class ModelResource extends BaseModelResource {
 
-  @RequestMapping(value="/repository/models/{modelId}", method = RequestMethod.GET, produces = "application/json")
-  public ModelResponse getModel(@PathVariable String modelId, HttpServletRequest request) {
-    Model model = getModelFromRequest(modelId);
-    
-    return restResponseFactory.createModelResponse(model);
-  }
-  
-  @RequestMapping(value="/repository/models/{modelId}", method = RequestMethod.PUT, produces = "application/json")
-  public ModelResponse updateModel(@PathVariable String modelId, @RequestBody ModelRequest modelRequest, HttpServletRequest request) {
-    Model model = getModelFromRequest(modelId);
-    
-    if (modelRequest.isCategoryChanged()) {
-      model.setCategory(modelRequest.getCategory());
-    }
-    if (modelRequest.isDeploymentChanged()) {
-      model.setDeploymentId(modelRequest.getDeploymentId());
-    }
-    if (modelRequest.isKeyChanged()) {
-      model.setKey(modelRequest.getKey());
-    }
-    if (modelRequest.isMetaInfoChanged()) {
-      model.setMetaInfo(modelRequest.getMetaInfo());
-    }
-    if (modelRequest.isNameChanged()) {
-      model.setName(modelRequest.getName());
-    }
-    if (modelRequest.isVersionChanged()) {
-      model.setVersion(modelRequest.getVersion());
-    }
-    if (modelRequest.isTenantIdChanged()) {
-    	model.setTenantId(modelRequest.getTenantId());
-    }
-    
-    repositoryService.saveModel(model);
-    return restResponseFactory.createModelResponse(model);
-  }
+    @RequestMapping(value = "", method = RequestMethod.GET, produces = "application/json")
+    public ModelResponse getModel(@PathVariable String modelId, HttpServletRequest request) {
+        Model model = getModelFromRequest(modelId);
 
-  @RequestMapping(value="/repository/models/{modelId}", method = RequestMethod.DELETE)
-  public void deleteModel(@PathVariable String modelId, HttpServletResponse response) {
-    Model model = getModelFromRequest(modelId);
-    repositoryService.deleteModel(model.getId());
-    response.setStatus(HttpStatus.NO_CONTENT.value());
-  }
+        return restResponseFactory.createModelResponse(model);
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.PUT, produces = "application/json")
+    public ModelResponse updateModel(@PathVariable String modelId, @RequestBody ModelRequest modelRequest, HttpServletRequest request) {
+        Model model = getModelFromRequest(modelId);
+
+        if (modelRequest.isCategoryChanged()) {
+            model.setCategory(modelRequest.getCategory());
+        }
+        if (modelRequest.isDeploymentChanged()) {
+            model.setDeploymentId(modelRequest.getDeploymentId());
+        }
+        if (modelRequest.isKeyChanged()) {
+            model.setKey(modelRequest.getKey());
+        }
+        if (modelRequest.isMetaInfoChanged()) {
+            model.setMetaInfo(modelRequest.getMetaInfo());
+        }
+        if (modelRequest.isNameChanged()) {
+            model.setName(modelRequest.getName());
+        }
+        if (modelRequest.isVersionChanged()) {
+            model.setVersion(modelRequest.getVersion());
+        }
+        if (modelRequest.isTenantIdChanged()) {
+            model.setTenantId(modelRequest.getTenantId());
+        }
+
+        repositoryService.saveModel(model);
+        return restResponseFactory.createModelResponse(model);
+    }
+
+    @RequestMapping(value = "", method = RequestMethod.DELETE)
+    public void deleteModel(@PathVariable String modelId, HttpServletResponse response) {
+        Model model = getModelFromRequest(modelId);
+        repositoryService.deleteModel(model.getId());
+        response.setStatus(HttpStatus.NO_CONTENT.value());
+    }
 }

@@ -29,10 +29,10 @@
 			
 			<div class="modal-footer">
 				<div class="pull-right">
-					<button type="button" class="btn btn-sm btn-default" ng-click="cancel()" ng-disabled="model.loading">
+					<button type="button" class="btn btn-sm btn-default" ng-click="cancelCreate()" ng-disabled="model.loading">
 						{{'GENERAL.ACTION.CANCEL' | translate}}
 					</button>
-					<button type="button" class="btn btn-sm btn-default" ng-click="ok()" ng-disabled="model.loading || !model.process.name || model.process.name.length == 0 || !model.process.key || model.process.key.length == 0">
+					<button type="button" class="btn btn-sm btn-default" ng-click="confirmCreate()" ng-disabled="model.loading || !model.process.name || model.process.name.length == 0 || !model.process.key || model.process.key.length == 0">
 						{{'PROCESS.ACTION.CREATE-CONFIRM' | translate}}
 					</button>
 				</div>

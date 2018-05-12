@@ -117,7 +117,11 @@
             "MODIFIED-ASC": "Oldest",
             "MODIFIED-DESC": "Last modified",
             "NAME-ASC": "Name, A-Z",
-            "NAME-DESC": "Name, Z-A"
+            "NAME-DESC": "Name, Z-A",
+            "ID-ASC": "SORT BY ID",
+            "KEY-ASC": "SORT BY KEY",
+            "CRT-TIME-ASC": "SORT BY CREATE TIME",
+            "LAST-UPDATE-TIME-ASC": "SORT BY LAST UPDATE TIME"
         }
     },
 

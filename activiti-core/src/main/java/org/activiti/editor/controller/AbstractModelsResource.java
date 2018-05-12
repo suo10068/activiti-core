@@ -39,16 +39,6 @@ public class AbstractModelsResource {
 
     public ResultListDataRepresentation getModels(String filter, String sort, Integer modelType, HttpServletRequest request) {
 
-        // need to parse the filterText parameter ourselves, due to encoding issues with the default parsing.
-        String filterText = null;
-        List<NameValuePair> params = URLEncodedUtils.parse(request.getQueryString(), Charset.forName("UTF-8"));
-        if (params != null) {
-            for (NameValuePair nameValuePair : params) {
-                if ("filterText".equalsIgnoreCase(nameValuePair.getName())) {
-                    filterText = nameValuePair.getValue();
-                }
-            }
-        }
 
 
         ResultListDataRepresentation result = new ResultListDataRepresentation();

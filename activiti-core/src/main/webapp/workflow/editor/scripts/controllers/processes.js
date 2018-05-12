@@ -18,10 +18,10 @@ angular.module('activitiModeler')
             ],
 
             sorts: [
-                {id: 'modifiedDesc', labelKey: 'MODIFIED-DESC'},
-                {id: 'modifiedAsc',  labelKey: 'MODIFIED-ASC'},
-                {id: 'nameAsc',      labelKey: 'NAME-ASC'},
-                {id: 'nameDesc',     labelKey: 'NAME-DESC'}
+                {id: 'id',             labelKey: 'ID-ASC'},
+                {id: 'key',            labelKey: 'KEY-ASC'},
+                {id: 'createTime',     labelKey: 'CRT-TIME-ASC'},
+                {id: 'lastUpdateTime', labelKey: 'LAST-UPDATE-TIME-ASC'}
             ]
         };
 
@@ -56,10 +56,15 @@ angular.module('activitiModeler')
         $scope.loadProcesses = function () {
             $scope.model.loading = true;
 
+            // var params = {
+            //     filter: $scope.model.activeFilter.id,
+            //     sort: $scope.model.activeSort.id,
+            //     modelType: 0
+            // };
             var params = {
                 filter: $scope.model.activeFilter.id,
                 sort: $scope.model.activeSort.id,
-                modelType: 0
+                order: 'asc'
             };
 
             if ($scope.model.filterText && $scope.model.filterText != '') {
@@ -68,7 +73,7 @@ angular.module('activitiModeler')
 
             $http({
                 method: 'GET',
-                url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models',
+                url: ACTIVITI.CONFIG.contextRoot + '/repository/models',
                 params: params
             }).success(function (data, status, headers, config) {
                 $scope.model.processes = data;
@@ -150,7 +155,7 @@ angular.module('activitiModeler')
                 $scope.model.process.modelType = $scope.initialModelType;
             }
 
-            $scope.ok = function () {
+            $scope.confirmCreate = function () {
 
                 if (!$scope.model.process.name || $scope.model.process.name.length == 0 ||
                     !$scope.model.process.key || $scope.model.process.key.length == 0) {
@@ -162,7 +167,7 @@ angular.module('activitiModeler')
 
                 $http({
                     method: 'POST',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models',
+                    url: ACTIVITI.CONFIG.contextRoot + '/repository/models',
                     data: $scope.model.process
                 }).success(function (data) {
                     $scope.$hide();
@@ -176,7 +181,7 @@ angular.module('activitiModeler')
                 });
             };
 
-            $scope.cancel = function () {
+            $scope.cancelCreate = function () {
                 if (!$scope.model.loading) {
                     $scope.$hide();
                 }
@@ -219,7 +224,7 @@ angular.module('activitiModeler')
 
                 $http({
                     method: 'POST',
-                    url: ACTIVITI.CONFIG.contextRoot + '/app/rest/models/' + $scope.model.process.id + '/clone',
+                    url: ACTIVITI.CONFIG.contextRoot + '/repository/models/' + $scope.model.process.id + '/clone',
                     data: $scope.model.process
                 }).success(function (data) {
                     $scope.$hide();
@@ -258,7 +263,7 @@ angular.module('activitiModeler')
                 if (isIE) {
                     url = ACTIVITI.CONFIG.contextRoot + '/app/rest/import-process-model/text';
                 } else {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/import-process-model';
+                    url = ACTIVITI.CONFIG.contextRoot + '/repository/import-process-model';
                 }
 
                 Upload.upload({
