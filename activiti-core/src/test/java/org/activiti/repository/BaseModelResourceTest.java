@@ -16,6 +16,7 @@ import org.activiti.rest.service.api.repository.ModelsPaginateList;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.env.Environment;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
@@ -32,7 +33,8 @@ public class BaseModelResourceTest {
 
     @Autowired
     protected RepositoryService repositoryService;
-
+    @Autowired
+    Environment env;
     @Test
     public void getModelFromRequest() {
         String modelId = "50";

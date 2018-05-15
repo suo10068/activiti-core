@@ -1,4 +1,4 @@
-package org.activiti.rest.confi;
+package org.activiti.conf;
 
 import org.activiti.rest.common.application.ContentTypeResolver;
 import org.activiti.rest.common.application.DefaultContentTypeResolver;

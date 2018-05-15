@@ -21,7 +21,6 @@
         <activiti.version>5.22.0</activiti.version>
         <spring.version>4.2.5.RELEASE</spring.version>
         <spring.security.version>4.0.1.RELEASE</spring.security.version>
-        <hibernate.version>4.2.16.Final</hibernate.version>
         <jackson.version>2.3.3</jackson.version>
         <codahale.metrics.version>3.0.2</codahale.metrics.version>
         <hazelcastcache.version>3.1.5</hazelcastcache.version>
@@ -42,11 +41,6 @@
             </dependency>
             <dependency>
                 <groupId>org.activiti</groupId>
-                <artifactId>activiti-webapp-explorer2</artifactId>
-                <version>1.0.0</version>
-            </dependency>
-            <dependency>
-                <groupId>org.activiti</groupId>
                 <artifactId>activiti-rest</artifactId>
                 <version>1.0.0</version>
             </dependency>
@@ -62,13 +56,6 @@
             </dependency>
 
             <!-- SPRING -->
-            <dependency>
-                <groupId>org.aspectj</groupId>
-                <artifactId>aspectjweaver</artifactId>
-                <version>1.7.4</version>
-                <type>jar</type>
-                <scope>compile</scope>
-            </dependency>
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-aop</artifactId>
@@ -149,7 +136,13 @@
                 <artifactId>spring-security-ldap</artifactId>
                 <version>${spring.security.version}</version>
             </dependency>
-
+            <dependency>
+                <groupId>org.aspectj</groupId>
+                <artifactId>aspectjweaver</artifactId>
+                <version>1.7.4</version>
+                <type>jar</type>
+                <scope>compile</scope>
+            </dependency>
 
 
 

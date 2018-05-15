@@ -6,8 +6,7 @@
 
     <display-name>activiti-core</display-name>
     <welcome-file-list>
-        <!--<welcome-file>/wf/modeler.html</welcome-file>-->
-        <welcome-file>/workflow/editor/index.html</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
     
     <context-param>
