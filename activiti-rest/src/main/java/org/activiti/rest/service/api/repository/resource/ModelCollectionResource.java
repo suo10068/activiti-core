@@ -1,5 +1,5 @@
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,6 +12,9 @@ import org.activiti.engine.query.QueryProperty;
 import org.activiti.engine.repository.Model;
 import org.activiti.engine.repository.ModelQuery;
 import org.activiti.rest.common.api.DataResponse;
+import org.activiti.rest.service.api.repository.request.ModelRequest;
+import org.activiti.rest.service.api.repository.response.ModelResponse;
+import org.activiti.rest.service.api.repository.ModelsPaginateList;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;

@@ -11,13 +11,14 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.response;
 
 import java.util.Date;
 
 import org.activiti.rest.common.util.DateToStringSerializer;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
+import org.activiti.rest.service.api.repository.request.ModelRequest;
 
 
 /**

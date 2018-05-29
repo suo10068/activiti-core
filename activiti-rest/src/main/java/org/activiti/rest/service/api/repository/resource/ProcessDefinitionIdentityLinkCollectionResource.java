@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.util.List;
 
@@ -22,6 +22,7 @@ import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.task.IdentityLinkType;
 import org.activiti.rest.service.api.engine.RestIdentityLink;
+import org.activiti.rest.service.api.repository.resource.BaseProcessDefinitionResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

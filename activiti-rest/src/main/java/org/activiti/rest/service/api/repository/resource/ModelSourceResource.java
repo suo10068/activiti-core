@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -20,6 +20,7 @@ import org.activiti.engine.ActivitiException;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.ActivitiObjectNotFoundException;
 import org.activiti.engine.repository.Model;
+import org.activiti.rest.service.api.repository.resource.BaseModelSourceResource;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;

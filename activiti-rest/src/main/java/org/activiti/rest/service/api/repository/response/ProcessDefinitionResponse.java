@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.response;
 
 /**
  * @author Frederik Heremans

@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -30,6 +30,8 @@ import org.activiti.engine.repository.DeploymentBuilder;
 import org.activiti.engine.repository.DeploymentQuery;
 import org.activiti.rest.common.api.DataResponse;
 import org.activiti.rest.service.api.RestResponseFactory;
+import org.activiti.rest.service.api.repository.response.DeploymentResponse;
+import org.activiti.rest.service.api.repository.DeploymentsPaginateList;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -100,8 +102,8 @@ public class DeploymentCollectionResource {
   }
   
   @RequestMapping(value="/repository/deployments", method = RequestMethod.POST, produces = "application/json")
-  public DeploymentResponse uploadDeployment(@RequestParam(value="tenantId", required=false) String tenantId, 
-      HttpServletRequest request, HttpServletResponse response) {
+  public DeploymentResponse uploadDeployment(@RequestParam(value="tenantId", required=false) String tenantId,
+                                             HttpServletRequest request, HttpServletResponse response) {
     
     if (request instanceof MultipartHttpServletRequest == false) {
       throw new ActivitiIllegalArgumentException("Multipart request is required");

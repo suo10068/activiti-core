@@ -4,10 +4,15 @@
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:tx="http://www.springframework.org/schema/tx"
        xmlns:jpa="http://www.springframework.org/schema/data/jpa"
-       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
-        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
-        http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
-        http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+       xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/data/jpa
+        http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
     <!-- c3p0数据源配置 -->
@@ -26,8 +31,8 @@
         <property name="maxIdleTimeExcessConnections" value="${jdbc.max-idle-time-excess-connections}"/>
     </bean>
 
-     <!--sessionFactory -->
-   <!-- <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+    <!--sessionFactory -->
+    <bean id="sessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
         <property name="dataSource" ref="dataSource"/>
         <property name="mapperLocations">
@@ -35,14 +40,15 @@
                 <value>classpath:mappers/**/*.xml</value>
             </list>
         </property>
-    </bean>-->
+    </bean>
 
-     <!--mapper扫描器 -->
-    <!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
-        <!--<property name="basePackage" value="com.dianer"/>-->
-        <!--<property name="sqlSessionFactoryBeanName" value="sessionFactory"/>-->
-    <!--</bean>-->
-     <!--事务配置 -->
+    <!--mapper扫描器 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.dianer"/>
+        <property name="sqlSessionFactoryBeanName" value="sessionFactory"/>
+    </bean>
+
+    <!--事务配置 -->
     <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
@@ -69,8 +75,8 @@
         <property name="asyncExecutor" ref="asyncExecutor"/>
     </bean>
     <bean name="asyncExecutor" class="org.activiti.engine.impl.asyncexecutor.DefaultAsyncJobExecutor">
-        <property name="defaultAsyncJobAcquireWaitTimeInMillis" value="5000" />
-        <property name="defaultTimerJobAcquireWaitTimeInMillis" value="5000" />
+        <property name="defaultAsyncJobAcquireWaitTimeInMillis" value="5000"/>
+        <property name="defaultTimerJobAcquireWaitTimeInMillis" value="5000"/>
     </bean>
 
 
@@ -85,7 +91,7 @@
     <!--<bean id="formEngineRepositoryService" factory-bean="processEngine" factory-method="getFormEngineRepositoryService"/>-->
     <!--<bean id="formEngineFormService" factory-bean="processEngine" factory-method="getFormEngineFormService"/>-->
 
-    <bean id="clock" depends-on="processEngine" factory-bean="processEngineConfiguration" factory-method="getClock" />
+    <bean id="clock" depends-on="processEngine" factory-bean="processEngineConfiguration" factory-method="getClock"/>
     <!-- Activiti  End -->
 
 </beans>

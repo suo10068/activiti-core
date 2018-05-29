@@ -4,11 +4,11 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 
 <configuration>
-	<!--<settings>-->
-		<!--&lt;!&ndash; 防止插入的时候有空值 &ndash;&gt;-->
-		<!--<setting name="jdbcTypeForNull" value="NULL"/>-->
-	<!--</settings>-->
-	<!--<typeAliases>-->
-		<!--<package name="com.dianer.domain"/>-->
-	<!--</typeAliases>	-->
+	<settings>
+		<!-- 防止插入的时候有空值 -->
+		<setting name="jdbcTypeForNull" value="NULL"/>
+	</settings>
+	<typeAliases>
+		<package name="com.dianer.domain"/>
+	</typeAliases>
 </configuration>

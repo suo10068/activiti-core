@@ -1,4 +1,4 @@
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.response;
 
 /* Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.

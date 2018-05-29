@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.util.Date;
 
@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletRequest;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.rest.exception.ActivitiConflictException;
+import org.activiti.rest.service.api.repository.request.ProcessDefinitionActionRequest;
+import org.activiti.rest.service.api.repository.response.ProcessDefinitionResponse;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -40,8 +42,8 @@ public class ProcessDefinitionResource extends BaseProcessDefinitionResource {
   }
   
   @RequestMapping(value="/repository/process-definitions/{processDefinitionId}", method = RequestMethod.PUT, produces = "application/json")
-  public ProcessDefinitionResponse executeProcessDefinitionAction(@PathVariable String processDefinitionId, 
-      @RequestBody ProcessDefinitionActionRequest actionRequest, HttpServletRequest request) {
+  public ProcessDefinitionResponse executeProcessDefinitionAction(@PathVariable String processDefinitionId,
+                                                                  @RequestBody ProcessDefinitionActionRequest actionRequest, HttpServletRequest request) {
     
     if (actionRequest == null) {
       throw new ActivitiIllegalArgumentException("No action found in request body.");

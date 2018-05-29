@@ -10,7 +10,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.RepositoryService;

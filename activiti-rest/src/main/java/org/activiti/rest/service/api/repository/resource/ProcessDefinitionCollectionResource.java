@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -24,6 +24,7 @@ import org.activiti.engine.query.QueryProperty;
 import org.activiti.engine.repository.ProcessDefinitionQuery;
 import org.activiti.rest.common.api.DataResponse;
 import org.activiti.rest.service.api.RestResponseFactory;
+import org.activiti.rest.service.api.repository.ProcessDefinitionsPaginateList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

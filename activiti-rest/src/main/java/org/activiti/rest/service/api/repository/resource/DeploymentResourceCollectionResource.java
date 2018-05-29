@@ -11,7 +11,7 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.util.List;
 
@@ -22,6 +22,7 @@ import org.activiti.engine.RepositoryService;
 import org.activiti.engine.repository.Deployment;
 import org.activiti.rest.common.application.ContentTypeResolver;
 import org.activiti.rest.service.api.RestResponseFactory;
+import org.activiti.rest.service.api.repository.response.DeploymentResourceResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +34,7 @@ import org.springframework.web.bind.annotation.RestController;
  * @author Frederik Heremans
  */
 @RestController
-public class DeploymentResourceResource {
+public class DeploymentResourceCollectionResource {
   
   @Autowired
   protected RestResponseFactory restResponseFactory;
@@ -44,31 +45,16 @@ public class DeploymentResourceResource {
   @Autowired
   protected RepositoryService repositoryService;
 
-  @RequestMapping(value="/repository/deployments/{deploymentId}/resources/**", method = RequestMethod.GET, produces = "application/json")
-  public DeploymentResourceResponse getDeploymentResource(@PathVariable("deploymentId") String deploymentId, 
-      HttpServletRequest request) {
-    
+  @RequestMapping(value="/repository/deployments/{deploymentId}/resources", method = RequestMethod.GET, produces = "application/json")
+  public List<DeploymentResourceResponse> getDeploymentResources(@PathVariable String deploymentId, HttpServletRequest request) {
     // Check if deployment exists
     Deployment deployment = repositoryService.createDeploymentQuery().deploymentId(deploymentId).singleResult();
     if (deployment == null) {
-      throw new ActivitiObjectNotFoundException("Could not find a deployment with id '" + deploymentId + "'.");
+      throw new ActivitiObjectNotFoundException("Could not find a deployment with id '" + deploymentId + "'.", Deployment.class);
     }
-    
-    String pathInfo = request.getPathInfo();
-    String resourceName = pathInfo.replace("/repository/deployments/" + deploymentId + "/resources/", "");
     
     List<String> resourceList = repositoryService.getDeploymentResourceNames(deploymentId);
     
-    if (resourceList.contains(resourceName)) {
-      // Build resource representation
-      DeploymentResourceResponse response = restResponseFactory.createDeploymentResourceResponse(deploymentId, resourceName, 
-          contentTypeResolver.resolveContentType(resourceName));
-      return response;
-      
-    } else {
-      // Resource not found in deployment
-      throw new ActivitiObjectNotFoundException("Could not find a resource with id '" + resourceName
-              + "' in deployment '" + deploymentId + "'.");
-    }
+    return restResponseFactory.createDeploymentResourceResponseList(deploymentId, resourceList, contentTypeResolver);
   }
 }

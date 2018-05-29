@@ -11,12 +11,14 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.activiti.engine.repository.Model;
+import org.activiti.rest.service.api.repository.request.ModelRequest;
+import org.activiti.rest.service.api.repository.response.ModelResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;

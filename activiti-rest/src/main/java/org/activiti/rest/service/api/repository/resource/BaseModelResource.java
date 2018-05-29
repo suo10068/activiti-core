@@ -1,5 +1,5 @@
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import org.activiti.engine.ActivitiObjectNotFoundException;
 import org.activiti.engine.RepositoryService;

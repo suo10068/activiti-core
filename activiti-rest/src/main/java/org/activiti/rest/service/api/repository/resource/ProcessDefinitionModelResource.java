@@ -11,10 +11,11 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import org.activiti.bpmn.model.BpmnModel;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.rest.service.api.repository.resource.BaseProcessDefinitionResource;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;

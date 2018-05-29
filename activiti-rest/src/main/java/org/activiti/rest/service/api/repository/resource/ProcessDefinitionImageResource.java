@@ -11,13 +11,14 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import java.io.InputStream;
 
 import org.activiti.engine.ActivitiException;
 import org.activiti.engine.ActivitiIllegalArgumentException;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.rest.service.api.repository.resource.BaseProcessDefinitionResource;
 import org.apache.commons.io.IOUtils;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;

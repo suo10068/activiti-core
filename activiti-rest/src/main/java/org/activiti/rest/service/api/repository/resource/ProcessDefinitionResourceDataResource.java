@@ -11,12 +11,13 @@
  * limitations under the License.
  */
 
-package org.activiti.rest.service.api.repository;
+package org.activiti.rest.service.api.repository.resource;
 
 import javax.servlet.http.HttpServletResponse;
 
 import org.activiti.engine.ActivitiObjectNotFoundException;
 import org.activiti.engine.repository.ProcessDefinition;
+import org.activiti.rest.service.api.repository.resource.BaseDeploymentResourceDataResource;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
