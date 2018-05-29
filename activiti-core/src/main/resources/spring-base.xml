@@ -10,9 +10,6 @@
         http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 
 
-    <!-- spring自动读取指定位置的配置为简到spring中 -->
-    <context:property-placeholder location="classpath:/properties/jdbc.properties"/>
-
     <!-- c3p0数据源配置 -->
     <bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
         <property name="driverClass" value="${jdbc.driver}"/>
@@ -50,7 +47,7 @@
         <property name="dataSource" ref="dataSource"/>
     </bean>
 
-    <!--&lt;!&ndash; 使用annotation定义事务 &ndash;&gt;-->
+    <!-- 使用annotation定义事务 -->
     <!--<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>-->
 
 

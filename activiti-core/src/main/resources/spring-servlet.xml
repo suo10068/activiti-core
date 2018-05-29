@@ -17,8 +17,14 @@
         http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
+
+    <!-- spring自动读取指定位置的配置为简到spring中 -->
+    <context:property-placeholder location="classpath:/properties/jdbc.properties,classpath:/properties/activiti.properties"/>
+
     <!-- 注册组件扫描器 -->
-    <context:component-scan base-package="org.activiti" />
+    <context:component-scan base-package="org.activiti">
+        <context:exclude-filter type="annotation" expression="org.springframework.context.annotation.Configuration" />
+    </context:component-scan>
 
     <mvc:annotation-driven />
 
