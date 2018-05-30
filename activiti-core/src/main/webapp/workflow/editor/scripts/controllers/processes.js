@@ -158,7 +158,7 @@ angular.module('activitiModeler')
             $scope.confirmCreate = function () {
 
                 if (!$scope.model.process.name || $scope.model.process.name.length == 0 ||
-                    !$scope.model.process.key || $scope.model.process.key.length == 0) {
+                    !$scope.model.process.key  || $scope.model.process.key.length == 0) {
 
                     return;
                 }
@@ -171,10 +171,10 @@ angular.module('activitiModeler')
                     data: $scope.model.process
                 }).success(function (data) {
                     $scope.$hide();
-
                     $scope.model.loading = false;
                     $rootScope.editorHistory = [];
                     $location.path("/editor/" + data.id);
+
                 }).error(function (data, status, headers, config) {
                     $scope.model.loading = false;
                     $scope.model.errorMessage = data.message;
@@ -261,9 +261,9 @@ angular.module('activitiModeler')
 
                 var url;
                 if (isIE) {
-                    url = ACTIVITI.CONFIG.contextRoot + '/app/rest/import-process-model/text';
+                    url = ACTIVITI.CONFIG.contextRoot + '/rest/import-process-model/text';
                 } else {
-                    url = ACTIVITI.CONFIG.contextRoot + '/repository/import-process-model';
+                    url = ACTIVITI.CONFIG.contextRoot + '/rest/import-process-model';
                 }
 
                 Upload.upload({

@@ -16,7 +16,7 @@ public class AuthInterceptor  implements HandlerInterceptor {
             throws Exception {
 
         String uri = request.getRequestURI();
-        logger.info("preHandle----- uri = " + uri);
+        logger.info("preHandle-uri:" + uri);
         return true;
     }
 

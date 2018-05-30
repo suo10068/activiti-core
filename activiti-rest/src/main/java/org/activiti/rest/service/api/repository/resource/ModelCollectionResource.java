@@ -7,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.alibaba.fastjson.JSON;
 import org.activiti.engine.impl.ModelQueryProperty;
 import org.activiti.engine.query.QueryProperty;
 import org.activiti.engine.repository.Model;
@@ -15,6 +16,8 @@ import org.activiti.rest.common.api.DataResponse;
 import org.activiti.rest.service.api.repository.request.ModelRequest;
 import org.activiti.rest.service.api.repository.response.ModelResponse;
 import org.activiti.rest.service.api.repository.ModelsPaginateList;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,6 +31,8 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(value = "/workflow")
 public class ModelCollectionResource extends BaseModelResource {
+
+    private Logger logger = LoggerFactory.getLogger(ModelCollectionResource.class);
 
     private static Map<String, QueryProperty> allowedSortProperties = new HashMap<String, QueryProperty>();
 
@@ -102,8 +107,18 @@ public class ModelCollectionResource extends BaseModelResource {
         return new ModelsPaginateList(restResponseFactory).paginateList(allRequestParams, modelQuery, "id", allowedSortProperties);
     }
 
+    /**
+     * 创建model
+     * @param modelRequest
+     * @param request
+     * @param response
+     * @return
+     */
     @RequestMapping(value = "/repository/models", method = RequestMethod.POST, produces = "application/json")
-    public ModelResponse createModel(@RequestBody ModelRequest modelRequest, HttpServletRequest request, HttpServletResponse response) {
+    public ModelResponse createModel(@RequestBody ModelRequest modelRequest, HttpServletRequest request,
+                                     HttpServletResponse response) {
+
+        logger.info("创建流程模型："+ JSON.toJSONString(modelRequest));
         Model model = repositoryService.newModel();
         model.setCategory(modelRequest.getCategory());
         model.setDeploymentId(modelRequest.getDeploymentId());

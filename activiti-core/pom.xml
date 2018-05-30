@@ -38,6 +38,10 @@
             <artifactId>activiti-rest</artifactId>
         </dependency>
 
+        <dependency>
+            <groupId>org.activiti</groupId>
+            <artifactId>activiti-explorer</artifactId>
+        </dependency>
 
         <!-- LOGGING -->
         <dependency>

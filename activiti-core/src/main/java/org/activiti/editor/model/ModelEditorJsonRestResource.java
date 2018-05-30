@@ -44,8 +44,12 @@ public class ModelEditorJsonRestResource implements ModelDataJsonConstants {
                     modelNode.put(MODEL_NAME, model.getName());
                 }
                 modelNode.put(MODEL_ID, model.getId());
-                ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(
-                        new String(repositoryService.getModelEditorSource(model.getId()), "utf-8"));
+                byte[] bytes = repositoryService.getModelEditorSource(model.getId());
+                String rstStr = "{}";
+                if (bytes != null){
+                    rstStr = new String(bytes, "utf-8");
+                }
+                ObjectNode editorJsonNode = (ObjectNode) objectMapper.readTree(rstStr);
                 modelNode.put("model", editorJsonNode);
 
             } catch (Exception e) {

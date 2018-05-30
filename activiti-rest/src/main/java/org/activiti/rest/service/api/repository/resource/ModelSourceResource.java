@@ -39,8 +39,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 public class ModelSourceResource extends BaseModelSourceResource {
 
     @RequestMapping(value = "/repository/models/{modelId}/source", method = RequestMethod.GET)
-    protected @ResponseBody
-    byte[] getModelBytes(@PathVariable String modelId, HttpServletResponse response) {
+    protected @ResponseBody byte[] getModelBytes(@PathVariable String modelId, HttpServletResponse response) {
         byte[] editorSource = repositoryService.getModelEditorSource(modelId);
         if (editorSource == null) {
             throw new ActivitiObjectNotFoundException("Model with id '" + modelId + "' does not have source available.", String.class);

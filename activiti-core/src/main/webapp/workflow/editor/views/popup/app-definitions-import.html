@@ -5,13 +5,15 @@
             <div class="modal-header-wrapper">
             	<div class="modal-header">
             		<div class="pull-right">
-                        <a class="action" ng-click="cancel()">&times; {{'GENERAL.ACTION.CANCEL' | translate}}</a>
+                        <a class="action" ng-click="cancel()">
+                            &times; {{'GENERAL.ACTION.CANCEL' | translate}}
+                        </a>
                     </div>
             		<h2>{{'APP.POPUP.IMPORT-TITLE' | translate}}</h2>
             	</div>
             </div>
-            <div class="modal-body">
 
+            <div class="modal-body">
                 <div class="checkbox" ng-show="!error && !error.isConflict">
                     <label>
                         <input type="checkbox" ng-disabled="status.loading" ng-model="model.renewIdmIds">
@@ -26,7 +28,6 @@
 
                 <!--[if IE 9]>
                 <div class="import-process-form">
-
                     <input type="file" ngf-select="" ngf-change="onFileSelect($files,true)" style="font-size: smaller; padding-top:6px;" >
                     <div class="import-process-dropbox"
                          ngf-drop="onFileSelect($files)"
@@ -47,11 +48,10 @@
                     </button>
 
                 </div>
-
                 <![endif]-->
+
                 <!--[if gt IE 9]> <!-- -->
                 <div class="import-process-form">
-
                     <input type="file" ngf-select="" ngf-change="onFileSelect($files)" style="font-size: smaller; padding-top:6px;" >
                     <div class="import-process-dropbox"
                          ngf-drop ngf-change="onFileSelect($files)"
@@ -72,16 +72,18 @@
                     </button>
 
                 </div>
-
                 <!-- <![endif]-->
-
             </div>
 
             <div class="modal-footer-wrapper">
                 <div class="modal-footer">
                     <loading></loading>
                     <div class="pull-right modeler-processes-error" ng-if="model.error">
-                        <span>{{'APP.POPUP.IMPORT.ERROR' | translate}} <span ng-if="model.errorMessage"> : </span>{{model.errorMessage}}</span>
+                        <span>
+                            {{'APP.POPUP.IMPORT.ERROR' | translate}}
+                            <span ng-if="model.errorMessage"> : </span>
+                            {{model.errorMessage}}
+                        </span>
                     </div>
                 </div>
             </div>
