@@ -6,7 +6,7 @@
 
     <display-name>activiti-core</display-name>
     <welcome-file-list>
-        <welcome-file>index.html</welcome-file>
+        <welcome-file>/workflow/index.html</welcome-file>
     </welcome-file-list>
     
     <context-param>
