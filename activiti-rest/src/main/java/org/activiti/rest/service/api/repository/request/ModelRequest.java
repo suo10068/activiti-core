@@ -16,6 +16,7 @@ public class ModelRequest {
     protected String metaInfo;
     protected String deploymentId;
     protected String tenantId;
+    protected String description;
 
     protected boolean nameChanged;
     protected boolean keyChanged;
@@ -86,6 +87,14 @@ public class ModelRequest {
 
     public String getTenantId() {
         return tenantId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
     }
 
     @JsonIgnore

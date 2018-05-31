@@ -30,7 +30,6 @@ import com.fasterxml.jackson.databind.node.ObjectNode;
  * @author Tijs Rademakers
  */
 @RestController
-@RequestMapping(value = "/workflow")
 public class ModelSaveRestResource implements ModelDataJsonConstants {
 
     protected static final Logger LOGGER = LoggerFactory.getLogger(ModelSaveRestResource.class);
@@ -41,7 +40,7 @@ public class ModelSaveRestResource implements ModelDataJsonConstants {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @RequestMapping(value = "/model/{modelId}/save", method = RequestMethod.PUT)
+    @RequestMapping(value = "/workflow/model/{modelId}/save", method = RequestMethod.POST)
     @ResponseStatus(value = HttpStatus.OK)
     public void saveModel(@PathVariable String modelId, @RequestBody MultiValueMap<String, String> values) {
         try {

@@ -1,6 +1,7 @@
 
 package org.activiti.rest.service.api.repository.resource;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -8,6 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.alibaba.fastjson.JSON;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import org.activiti.engine.impl.ModelQueryProperty;
 import org.activiti.engine.query.QueryProperty;
 import org.activiti.engine.repository.Model;
@@ -16,6 +19,7 @@ import org.activiti.rest.common.api.DataResponse;
 import org.activiti.rest.service.api.repository.request.ModelRequest;
 import org.activiti.rest.service.api.repository.response.ModelResponse;
 import org.activiti.rest.service.api.repository.ModelsPaginateList;
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -109,6 +113,7 @@ public class ModelCollectionResource extends BaseModelResource {
 
     /**
      * 创建model
+     *
      * @param modelRequest
      * @param request
      * @param response
@@ -118,18 +123,41 @@ public class ModelCollectionResource extends BaseModelResource {
     public ModelResponse createModel(@RequestBody ModelRequest modelRequest, HttpServletRequest request,
                                      HttpServletResponse response) {
 
-        logger.info("创建流程模型："+ JSON.toJSONString(modelRequest));
-        Model model = repositoryService.newModel();
-        model.setCategory(modelRequest.getCategory());
-        model.setDeploymentId(modelRequest.getDeploymentId());
-        model.setKey(modelRequest.getKey());
-        model.setMetaInfo(modelRequest.getMetaInfo());
-        model.setName(modelRequest.getName());
-        model.setVersion(modelRequest.getVersion());
-        model.setTenantId(modelRequest.getTenantId());
+        logger.info("创建流程模型：" + JSON.toJSONString(modelRequest));
+        ObjectMapper objectMapper = new ObjectMapper();
+        ObjectNode editorNode = objectMapper.createObjectNode();
+        editorNode.put("id", "canvas");
+        editorNode.put("resourceId", "canvas");
+        ObjectNode stencilSetNode = objectMapper.createObjectNode();
+        stencilSetNode.put("namespace", "http://b3mn.org/stencilset/bpmn2.0#");
+        editorNode.put("stencilset", stencilSetNode);
 
-        repositoryService.saveModel(model);
+
+        ObjectNode modelObjectNode = objectMapper.createObjectNode();
+        modelObjectNode.put(MODEL_NAME, modelRequest.getName());
+        modelObjectNode.put(MODEL_REVISION, 1);
+        String description = null;
+        if (StringUtils.isNotEmpty(modelRequest.getDescription())) {
+            description = modelRequest.getDescription();
+        } else {
+            description = "";
+        }
+        modelObjectNode.put(MODEL_DESCRIPTION, description);
+
+        Model modelData = repositoryService.newModel();
+        modelData.setName(modelRequest.getName());
+        modelData.setKey(modelRequest.getKey());
+        modelData.setMetaInfo(modelObjectNode.toString());
+
+        repositoryService.saveModel(modelData);
+
+        try {
+            repositoryService.addModelEditorSource(modelData.getId(), editorNode.toString().getBytes("utf-8"));
+        } catch (UnsupportedEncodingException e) {
+            logger.error("Create Model Failed ", e);
+        }
+
         response.setStatus(HttpStatus.CREATED.value());
-        return restResponseFactory.createModelResponse(model);
+        return restResponseFactory.createModelResponse(modelData);
     }
 }

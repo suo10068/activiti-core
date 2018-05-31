@@ -15,6 +15,11 @@ import org.springframework.beans.factory.annotation.Autowired;
  */
 public class BaseModelResource {
 
+    String MODEL_ID = "modelId";
+    String MODEL_NAME = "name";
+    String MODEL_REVISION = "revision";
+    String MODEL_DESCRIPTION = "description";
+
     @Autowired
     protected RestResponseFactory restResponseFactory;
 

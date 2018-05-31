@@ -33,13 +33,15 @@ angular.module('activitiModeler')
                     modelUrl = KISBPM.URL.newModelInfo();
                 }
 
-                $http({method: 'GET', url: modelUrl}).success(function (data, status, headers, config) {
-                    $rootScope.editor = new ORYX.Editor(data);
-                    $rootScope.modelData = angular.fromJson(data);
-                    $rootScope.editorFactory.resolve();
-                }).error(function (data, status, headers, config) {
-                    $location.path("/processes/");
-                });
+                $http({method: 'GET', url: modelUrl})
+                    .success(function (data, status, headers, config) {
+                        $rootScope.editor = new ORYX.Editor(data);
+                        $rootScope.modelData = angular.fromJson(data);
+                        $rootScope.editorFactory.resolve();
+                    })
+                    .error(function (data, status, headers, config) {
+                        $location.path("/processes/");
+                    });
             }
 
 
